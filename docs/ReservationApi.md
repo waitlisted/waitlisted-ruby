@@ -66,6 +66,13 @@ Delete a reservation.
 ```ruby
 # load the gem
 require 'waitlisted'
+# setup authorization
+Waitlisted.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['X-API-Key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['X-API-Key'] = 'Bearer'
+end
 
 api_instance = Waitlisted::ReservationApi.new
 
@@ -91,7 +98,7 @@ nil (empty response body)
 
 ### Authorization
 
-No authorization required
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
