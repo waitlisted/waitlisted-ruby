@@ -32,6 +32,63 @@ module Waitlisted
     end
 
     # 
+    # Activate a reservation.
+    # @param body Reservation Data
+    # @param [Hash] opts the optional parameters
+    # @return [ReservationsResponse]
+    def activate_reservation(body, opts = {})
+      data, _status_code, _headers = activate_reservation_with_http_info(body, opts)
+      return data
+    end
+
+    # 
+    # Activate a reservation.
+    # @param body Reservation Data
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(ReservationsResponse, Fixnum, Hash)>] ReservationsResponse data, response status code and response headers
+    def activate_reservation_with_http_info(body, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: ReservationApi.activate_reservation ..."
+      end
+      # verify the required parameter 'body' is set
+      fail ArgumentError, "Missing the required parameter 'body' when calling ReservationApi.activate_reservation" if body.nil?
+      # resource path
+      local_var_path = "/reservations/activate".sub('{format}','json')
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+
+      # HTTP header 'Accept' (if needed)
+      local_header_accept = ['application/json']
+      local_header_accept_result = @api_client.select_header_accept(local_header_accept) and header_params['Accept'] = local_header_accept_result
+
+      # HTTP header 'Content-Type'
+      local_header_content_type = ['application/json']
+      header_params['Content-Type'] = @api_client.select_header_content_type(local_header_content_type)
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(body)
+      auth_names = ['api_key']
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'ReservationsResponse')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ReservationApi#activate_reservation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # 
     # Creates a new reservation.
     # @param body Reservation Data
     # @param [Hash] opts the optional parameters
